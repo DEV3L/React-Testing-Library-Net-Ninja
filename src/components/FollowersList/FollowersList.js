@@ -8,7 +8,7 @@ export default function FollowersList() {
     const [followers, setFollowers] = useState([]);
 
     useEffect(() => {
-        fetchFollowers()
+        fetchFollowers().then()
     }, []);
 
     const fetchFollowers = async () => {

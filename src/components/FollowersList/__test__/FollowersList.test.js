@@ -2,7 +2,34 @@ import {render, screen} from '@testing-library/react';
 import FollowersList from '../FollowersList';
 import {BrowserRouter} from "react-router-dom";
 
-const MockFollowersList = () => {
+const mockDataResults = [...Array(5).keys()].map((index) => {
+    return {
+        name: {
+            first: `Laith-${index}`,
+            last: "Harb"
+        },
+        picture: {
+            large: "https://randomuser.me/api/portraits/women/59.jpg"
+        },
+        login: {
+            username: `ThePhoneyGOAT-${index}`
+        }
+    }
+});
+
+jest.mock('axios', () => ({
+    __esModule: true,
+    default: {
+        get: () => ({
+            data:
+                {
+                    results: mockDataResults
+                }
+        })
+    }
+}));
+
+const MockFollowersList = (a) => {
     return <BrowserRouter>
         <FollowersList/>
     </BrowserRouter>
